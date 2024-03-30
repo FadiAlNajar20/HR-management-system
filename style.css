@@ -9,18 +9,20 @@
 }
 
 header {
-    background-color: #c0c0c0;
+    background-color: #BFEA7C;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 90px;
 }
+
 header img {
     width: 200px;
     height: 100px;
     mix-blend-mode: color-burn;
 }
+
 nav a {
     text-decoration: none;
     color: black;
@@ -37,7 +39,7 @@ nav a {
     color: #354230;
 }
 
-table,
+/* table,
 td,
 th {
     border-collapse: collapse;
@@ -54,13 +56,73 @@ table {
 
 table img {
     width: 40px;
+} */
+.formSection {
+    width: 430px;
+    padding: 50px;
+    margin: 50px auto;
+    border: 1px solid #333;
+    background-color: #9BCF53;
+}
+
+.formSection input,
+select {
+    padding: 15px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.twoLable {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: #FFF67E;
+    cursor: pointer;
+}
+
+.card {
+    border: 3px solid #333;
+    width: 250px;
+    text-align: center;
+    background-color: #416D19;
+    margin: 30px;
+    height: 50%;
+}
+
+img {
+    width: 150px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.pargraph {
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 footer {
     display: flex;
     justify-content: space-around;
     margin-top: 200px;
-    background-color: #c0c0c0;
+    background-color: #BFEA7C;
     width: 100%;
     padding: 10px 90px;
     height: 120px;

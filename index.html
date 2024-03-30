@@ -17,9 +17,43 @@
     </header>
 
     <main>
-       <section id="data">
-        <!-- Render the Table from JS -->
-       </section>
+       <section class="formSection">
+        <form id="formID">
+            <label for="fullName" class="twoLable">Full Name:</label>
+            <input type="text" name="fullName" id="fullName">
+            <select name="Department" id="department">
+                <option value="administration">Administration</option>
+                <option value="marketing">Marketing</option>
+                <option value="development">Development</option>
+                <option value="finance">Finance</option>
+            </select>
+            <select name="Level" id="level">
+                <option value="Junior">Junior</option>
+                <option value="Mid-Senior">Mid-Senior</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <label for="imageURL" class="twoLable">Image URL:</label>
+            <input type="text" name="imageURL" id="imageURL">
+            <input type="submit" value="Submit" class="btn">
+        </form>
+    </section>
+        <section id="data">
+            <!-- Render the Table from JS -->
+        </section>
+        <section class="pargraph">
+            <p>adminSection</p>
+            <p>finance</p>
+            <p>marketing</p>
+            <p>development</p>
+        </section>
+
+        <section class="container">
+            <section id="adminSection"></section>
+           <section id="finance"></section>
+           <section id="marketing"></section>
+           <section id="development"></section>
+        </section>
+        
     </main>
     
     <footer>
