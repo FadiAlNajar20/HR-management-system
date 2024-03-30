@@ -1,50 +1,8 @@
 'use strict';
 let allData = []
 
-let person = new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&usqp=CAU');
-let person2 = new Employee(1001, 'Lana Ali', 'Finance', 'Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZlAcC_1n7gulS21qRrKRo-FYLW4xLt9y2eA&usqp=CAU');
-let person3 = new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&usqp=CAU');
-let person4 = new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&usqp=CAU');
-let person5 = new Employee(1004, 'Omar Zaid', 'Development', 'Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&usqp=CAU');
-let person6 = new Employee(1005, 'Rana Saleh', 'Development', 'Junior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZlAcC_1n7gulS21qRrKRo-FYLW4xLt9y2eA&usqp=CAU');
-let person7 = new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&usqp=CAU');
-
-
-
-Employee.prototype.calculateSalary = function () {
-    let min, max;
-
-    switch (this.level) {
-        case 'Junior':
-            min = 500;
-            max = 1000;
-            break;
-        case 'Mid-Senior':
-            min = 1000;
-            max = 1500;
-            break;
-        case 'Senior':
-            min = 1500;
-            max = 2000;
-            break;
-        default:
-            break;
-    }
-
-    this.salary = getRandomSalary(min, max);
-
-    const netSalary = this.salary - this.salary * 0.075;
-
-    return netSalary;
-}
-
-function getRandomSalary(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    let result = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
-    // console.log('From the random: ',result);
-    return result;
-}
+let formEl = document.getElementById('formID');
+formEl.addEventListener('submit', handleForm);
 
 function Employee(id, fullName, department, level, imageURL, salary) {
     this.id = id;
@@ -56,38 +14,118 @@ function Employee(id, fullName, department, level, imageURL, salary) {
     allData.push(this);
 }
 
-Employee.prototype.render = function(){
-    let TEl = document.getElementById('data');
-    let result = `
-        <table>
-            <tr>
-                <th>Employee ID</th>
-                <th>Full name</th>
-                <th>Department</th>
-                <th>Level</th>
-                <th>Image</th>
-                <th>Salary</th>
-            </tr>`;
-    allData.map((item) => {
-        result += `
-            <tr>
-                <td>${item.id}</td>
-                <td>${item.fullName}</td>
-                <td>${item.department}</td>
-                <td>${item.level}</td>
-                <td><img src=${item.imageURL}</td>
-                <td>${item.salary}</td>
-            </tr>`;
-    });
-    result += `</table>`;
-    TEl.innerHTML = result;
+new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', './assets/Ghazi.jpg');
+new Employee(1001, 'Lana Ali', 'Finance', 'Senior', './assets/Lana.jpg');
+new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', './assets/Tamara.jpg');
+new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', './assets/Safi.jpg');
+new Employee(1004, 'Omar Zaid', 'Development', 'Senior', './assets/Omar.jpg');
+new Employee(1005, 'Rana Saleh', 'Development', 'Junior', './assets/Rana.jpg');
+new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', './assets/Hadi.jpg');
+
+Employee.prototype.calculateSalary = function () {
+    let levelSalary;
+    switch (this.level) {
+        case 'Junior': levelSalary = getRandomSalary(500, 1000);
+            break;
+        case 'Mid-Senior': levelSalary = getRandomSalary(1000, 1500);
+            break;
+        case 'Senior': levelSalary = getRandomSalary(1500, 2000);
+            break;
+        default:
+            break;
+    }
+    this.salary = levelSalary;
+    const netSalary = this.salary - this.salary * 0.075;
+    return (this.salary = netSalary);
 }
 
+Employee.prototype.render = function () {
+    let adminEl = document.getElementById('adminSection');
+    let financeEl = document.getElementById('finance');
+    let marketingEl = document.getElementById('marketing');
+    let developmentEl = document.getElementById('development');
+    
+    adminEl.innerHTML = '';
+    financeEl.innerHTML = '';
+    marketingEl.innerHTML = '';
+    developmentEl.innerHTML = '';
 
-for (let employee of allData) {
-    employee.calculateSalary();
-   employee.render();
- }
- console.log(allData);
+    allData.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
 
- 
+        const imageURL = document.createElement('img');
+        imageURL.src = item.imageURL;
+
+        const title = document.createElement('h3');
+        title.textContent = `Name: ${item.fullName} - ID: ${item.id}`;
+
+        const body = document.createElement('h5');
+        body.textContent = `Department: ${item.department} - Level: ${item.level}`;
+
+        const salary = document.createElement('p');
+        salary.textContent = `Salary: ${item.calculateSalary()}`;
+
+        switch (item.department) {
+            case 'Administration':
+                adminEl.appendChild(card);
+                break;
+            case 'Marketing':
+                marketingEl.appendChild(card);
+                break;
+            case 'Development':
+                developmentEl.appendChild(card);
+                break;
+            case 'Finance':
+                financeEl.appendChild(card);
+                break;
+        }
+
+        card.appendChild(imageURL);
+        card.appendChild(title);
+        card.appendChild(body);
+        card.appendChild(salary);
+    });
+};
+
+
+
+
+for (let i = 0; i < allData.length; i++) {
+    Employee.prototype.render();
+
+}
+
+Employee.prototype.generateID = function () {
+    let number = 0;
+    for (let i = 0; i < allData.length; i++) {
+        number = allData[i].id + 1
+    }
+    return number;
+}
+
+function getRandomSalary(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    let result = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+    return result;
+}
+
+function handleForm(e) {
+    e.preventDefault();
+    let employeeName = e.target.fullName.value;
+    let slesctDepartment = e.target.department.value;
+    let slesctLevel = e.target.level.value;
+    let employeeImage = e.target.imageURL.value;
+    let id = Employee.prototype.generateID();
+    let newEmloyee = new Employee(id, employeeName, slesctDepartment, slesctLevel, employeeImage);
+    console.log(newEmloyee);
+    console.log(allData);
+    newEmloyee.calculateSalary();
+    newEmloyee.render();
+
+}
+
+console.log(allData);
+
+
