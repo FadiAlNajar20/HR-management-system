@@ -1,5 +1,5 @@
 'use strict';
-let allData = []
+let allData = [];
 
 let formEl = document.getElementById('formID');
 formEl.addEventListener('submit', handleForm);
@@ -14,13 +14,13 @@ function Employee(id, fullName, department, level, imageURL, salary) {
     allData.push(this);
 }
 
-new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', './assets/Ghazi.jpg');
-new Employee(1001, 'Lana Ali', 'Finance', 'Senior', './assets/Lana.jpg');
-new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', './assets/Tamara.jpg');
-new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', './assets/Safi.jpg');
-new Employee(1004, 'Omar Zaid', 'Development', 'Senior', './assets/Omar.jpg');
-new Employee(1005, 'Rana Saleh', 'Development', 'Junior', './assets/Rana.jpg');
-new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', './assets/Hadi.jpg');
+let employee1 = new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', './assets/Ghazi.jpg');
+let employee2 = new Employee(1001, 'Lana Ali', 'Finance', 'Senior', './assets/Lana.jpg');
+let employee3 = new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', './assets/Tamara.jpg');
+let employee4 = new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', './assets/Safi.jpg');
+let employee5 = new Employee(1004, 'Omar Zaid', 'Development', 'Senior', './assets/Omar.jpg');
+let employee6 = new Employee(1005, 'Rana Saleh', 'Development', 'Junior', './assets/Rana.jpg');
+let employee17 = new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', './assets/Hadi.jpg');
 
 Employee.prototype.calculateSalary = function () {
     let levelSalary;
@@ -38,13 +38,58 @@ Employee.prototype.calculateSalary = function () {
     const netSalary = this.salary - this.salary * 0.075;
     return (this.salary = netSalary);
 }
+// let adminEl = document.getElementById('adminSection');
+// let financeEl = document.getElementById('finance');
+// let marketingEl = document.getElementById('marketing');
+// let developmentEl = document.getElementById('development');
 
+// adminEl.innerHTML = '';
+// financeEl.innerHTML = '';
+// marketingEl.innerHTML = '';
+// developmentEl.innerHTML = '';
+
+// allData.forEach(item => {
+//     const card = document.createElement('div');
+//     card.classList.add('card');
+
+//     const imageURL = document.createElement('img');
+//     imageURL.src = item.imageURL;
+
+//     const title = document.createElement('h3');
+//     title.textContent = `Name: ${item.fullName} - ID: ${item.id}`;
+
+//     const body = document.createElement('h5');
+//     body.textContent = `Department: ${item.department} - Level: ${item.level}`;
+
+//     const salary = document.createElement('p');
+//     salary.textContent = `Salary: ${item.calculateSalary()}`;
+
+//     switch (item.department) {
+//         case 'Administration':
+//             adminEl.appendChild(card);
+//             break;
+//         case 'Marketing':
+//             marketingEl.appendChild(card);
+//             break;
+//         case 'Development':
+//             developmentEl.appendChild(card);
+//             break;
+//         case 'Finance':
+//             financeEl.appendChild(card);
+//             break;
+//     }
+
+//     card.appendChild(imageURL);
+//     card.appendChild(title);
+//     card.appendChild(body);
+//     card.appendChild(salary);
+// });
 Employee.prototype.render = function () {
     let adminEl = document.getElementById('adminSection');
     let financeEl = document.getElementById('finance');
     let marketingEl = document.getElementById('marketing');
     let developmentEl = document.getElementById('development');
-    
+
     adminEl.innerHTML = '';
     financeEl.innerHTML = '';
     marketingEl.innerHTML = '';
@@ -86,15 +131,68 @@ Employee.prototype.render = function () {
         card.appendChild(body);
         card.appendChild(salary);
     });
+    // let adminEl = document.getElementById('adminSection');
+    // let financeEl = document.getElementById('finance');
+    // let marketingEl = document.getElementById('marketing');
+    // let developmentEl = document.getElementById('development');
+
+    // adminEl.innerHTML = '';
+    // financeEl.innerHTML = '';
+    // marketingEl.innerHTML = '';
+    // developmentEl.innerHTML = '';
+
+    // // allData.forEach(item => {
+    //     let show = document.querySelector('container');
+    //     const card = document.createElement('div');
+    //     card.classList.add('card');
+    //     // show.appendChild(card)
+    //     const imageURL = document.createElement('img');
+    //     imageURL.src = this.imageURL;
+
+    //     const title = document.createElement('h3');
+    //     title.textContent = `Name: ${this.fullName} - ID: ${this.id}`;
+
+    //     const body = document.createElement('h5');
+    //     body.textContent = `Department: ${this.department} - Level: ${this.level}`;
+
+    //     const salary = document.createElement('p');
+    //     salary.textContent = `Salary: ${this.calculateSalary()}`;
+
+    //     switch (this.department) {
+    //         case 'Administration':
+    //             adminEl.appendChild(card);
+    //             break;
+    //         case 'Marketing':
+    //             marketingEl.appendChild(card);
+    //             break;
+    //         case 'Development':
+    //             developmentEl.appendChild(card);
+    //             break;
+    //         case 'Finance':
+    //             financeEl.appendChild(card);
+    //             break;
+    //     }
+
+    //     card.appendChild(imageURL);
+    //     card.appendChild(title);
+    //     card.appendChild(body);
+    //     card.appendChild(salary);
+    // });
 };
 
 
-
-
-for (let i = 0; i < allData.length; i++) {
-    Employee.prototype.render();
-
+function renderAll() {
+    for (let i = 0; i < allData.length; i++) {
+        // Employee.prototype.render();
+        allData[i].render();
+        // console.log(allData[i]);
+    }
 }
+
+
+renderAll();
+
+
 
 Employee.prototype.generateID = function () {
     let number = 0;
@@ -123,9 +221,35 @@ function handleForm(e) {
     console.log(allData);
     newEmloyee.calculateSalary();
     newEmloyee.render();
-
+    saveData(allData);
 }
 
-console.log(allData);
+function saveData(data) {
+    let stringfiyData = JSON.stringify(data);
+    localStorage.setItem('employee', stringfiyData);
+}
 
+function getData() {
+    let getDataFromLocalStorage = localStorage.getItem('employee');
+    let parsedData = JSON.parse(getDataFromLocalStorage);
+    console.log('this is parsed data: ', parsedData);
+
+    if (parsedData !== null) {
+        allData = parsedData.map(employeeData => {
+            let employee = new Employee(
+                employeeData.id,
+                employeeData.fullName,
+                employeeData.department,
+                employeeData.level,
+                employeeData.imageURL,
+                employeeData.salary
+            );
+            employee.calculateSalary();
+            return employee;
+        });
+        renderAll();
+    }
+}
+
+getData();
 
