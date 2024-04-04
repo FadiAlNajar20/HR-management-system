@@ -38,52 +38,7 @@ Employee.prototype.calculateSalary = function () {
     const netSalary = this.salary - this.salary * 0.075;
     return (this.salary = netSalary);
 }
-// let adminEl = document.getElementById('adminSection');
-// let financeEl = document.getElementById('finance');
-// let marketingEl = document.getElementById('marketing');
-// let developmentEl = document.getElementById('development');
 
-// adminEl.innerHTML = '';
-// financeEl.innerHTML = '';
-// marketingEl.innerHTML = '';
-// developmentEl.innerHTML = '';
-
-// allData.forEach(item => {
-//     const card = document.createElement('div');
-//     card.classList.add('card');
-
-//     const imageURL = document.createElement('img');
-//     imageURL.src = item.imageURL;
-
-//     const title = document.createElement('h3');
-//     title.textContent = `Name: ${item.fullName} - ID: ${item.id}`;
-
-//     const body = document.createElement('h5');
-//     body.textContent = `Department: ${item.department} - Level: ${item.level}`;
-
-//     const salary = document.createElement('p');
-//     salary.textContent = `Salary: ${item.calculateSalary()}`;
-
-//     switch (item.department) {
-//         case 'Administration':
-//             adminEl.appendChild(card);
-//             break;
-//         case 'Marketing':
-//             marketingEl.appendChild(card);
-//             break;
-//         case 'Development':
-//             developmentEl.appendChild(card);
-//             break;
-//         case 'Finance':
-//             financeEl.appendChild(card);
-//             break;
-//     }
-
-//     card.appendChild(imageURL);
-//     card.appendChild(title);
-//     card.appendChild(body);
-//     card.appendChild(salary);
-// });
 Employee.prototype.render = function () {
     let adminEl = document.getElementById('adminSection');
     let financeEl = document.getElementById('finance');
@@ -131,68 +86,16 @@ Employee.prototype.render = function () {
         card.appendChild(body);
         card.appendChild(salary);
     });
-    // let adminEl = document.getElementById('adminSection');
-    // let financeEl = document.getElementById('finance');
-    // let marketingEl = document.getElementById('marketing');
-    // let developmentEl = document.getElementById('development');
-
-    // adminEl.innerHTML = '';
-    // financeEl.innerHTML = '';
-    // marketingEl.innerHTML = '';
-    // developmentEl.innerHTML = '';
-
-    // // allData.forEach(item => {
-    //     let show = document.querySelector('container');
-    //     const card = document.createElement('div');
-    //     card.classList.add('card');
-    //     // show.appendChild(card)
-    //     const imageURL = document.createElement('img');
-    //     imageURL.src = this.imageURL;
-
-    //     const title = document.createElement('h3');
-    //     title.textContent = `Name: ${this.fullName} - ID: ${this.id}`;
-
-    //     const body = document.createElement('h5');
-    //     body.textContent = `Department: ${this.department} - Level: ${this.level}`;
-
-    //     const salary = document.createElement('p');
-    //     salary.textContent = `Salary: ${this.calculateSalary()}`;
-
-    //     switch (this.department) {
-    //         case 'Administration':
-    //             adminEl.appendChild(card);
-    //             break;
-    //         case 'Marketing':
-    //             marketingEl.appendChild(card);
-    //             break;
-    //         case 'Development':
-    //             developmentEl.appendChild(card);
-    //             break;
-    //         case 'Finance':
-    //             financeEl.appendChild(card);
-    //             break;
-    //     }
-
-    //     card.appendChild(imageURL);
-    //     card.appendChild(title);
-    //     card.appendChild(body);
-    //     card.appendChild(salary);
-    // });
 };
 
 
 function renderAll() {
     for (let i = 0; i < allData.length; i++) {
-        // Employee.prototype.render();
         allData[i].render();
-        // console.log(allData[i]);
     }
 }
 
-
 renderAll();
-
-
 
 Employee.prototype.generateID = function () {
     let number = 0;
@@ -252,4 +155,3 @@ function getData() {
 }
 
 getData();
-
